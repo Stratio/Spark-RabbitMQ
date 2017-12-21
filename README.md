@@ -1,6 +1,4 @@
-[![Coverage Status](https://coveralls.io/repos/github/Stratio/spark-rabbitmq/badge.svg?branch=master)]
-(https://coveralls.io/github/Stratio/spark-rabbitmq?branch=master)
-
+[![Coverage Status](https://coveralls.io/repos/github/Stratio/spark-rabbitmq/badge.svg?branch=master)](https://coveralls.io/github/Stratio/spark-rabbitmq?branch=master)
 # RabbitMQ Spark Streaming Receiver
 
 RabbitMQ-Receiver is a library that allows the user to read data with [Apache Spark Streaming](https://spark.apache.org/)
@@ -91,11 +89,12 @@ can't select NONE, because on each Spark action the RDD will be re-computed
 
 - String
 ```
-val receiverStream = RabbitMQUtils.createDistributedStream[String](sparkStreamingContext, params, distributedKeys)
+val receiverStream = RabbitMQUtils.createDistributedStream[String](sparkStreamingContext, distributedKeys, params)
 ```
 - Generic user Type
 ```
-val receiverStream = RabbitMQUtils.createDistributedStream[R](sparkStreamingContext, params, distributedKeys, Array[Byte] => R))
+val receiverStream = RabbitMQUtils.createDistributedStream[R](sparkStreamingContext, params, distributedKeys,
+  delivery => { /* transform delivery.getBody byte array to object type R */} ))
 ```
 
 
